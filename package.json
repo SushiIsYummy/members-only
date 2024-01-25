@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start": "node --env-file=.env ./bin/www",
-    "devstart": "nodemon -e html,js,css,ejs --env-file=.env ./bin/www",
+    "devstart": "nodemon --env-file=.env ./bin/www",
     "dev:backend": "DEBUG=members-only:* npm run devstart",
     "ui": "browser-sync start --proxy localhost:3000 --files=**/*  --ignore=node_modules --no-ui --no-inject-changes"
   },

@@ -8,13 +8,17 @@ form {
   width: 400px;
 }
 
+form > h1 {
+  text-align: center;
+}
+
 .input-group {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
-.login-button {
+.sign-in-button {
   margin-top: 10px;
   padding: 5px 10px;
   font-size: 1rem;
@@ -25,5 +29,10 @@ form {
 }
 
 .no-account-msg {
+  align-self: center;
   margin-top: 10px;
+}
+
+.sign-in-fail-msg {
+  color: red;
 }

@@ -4,12 +4,16 @@ form {
   width: 400px;
 }
 
+form > h1 {
+  text-align: center;
+}
+
 .first-last-name {
   display: flex;
   gap: 20px;
 }
 
-.sign-up-button {
+.register-button {
   margin-top: 10px;
   padding: 5px 10px;
   font-size: 1rem;
@@ -22,4 +26,8 @@ form {
 .have-account-msg {
   align-self: center;
   margin-top: 10px;
+}
+
+.error-list {
+  list-style-position: inside;
 }

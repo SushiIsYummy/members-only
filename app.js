@@ -1,16 +1,14 @@
 const createError = require('http-errors');
 const express = require('express');
-const bcrypt = require('bcryptjs');
 const path = require('path');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const User = require('./models/user');
 require('dotenv').config();
 const indexRouter = require('./routes/index');
+const passportConfig = require('./config/passport-config');
 // const usersRouter = require('./routes/users');
 // const userController = require('./controllers/userController');
 
@@ -29,6 +27,11 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
+passportConfig(passport);
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(logger('dev'));
 app.use(express.json());

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/signInForm.css" />
+    <title>Sign In</title>
+  </head>
+  <body>
+    <form action="" method="POST">
+      <h1>Sign In</h1>
+      <div class="input-group">
+        <p>Username:</p>
+        <input type="text" name="username" value="<%= username %>"/>
+      </div>
+      <div class="input-group">
+        <p>Password:</p>
+        <input type="password" name="password" value="<%= password %>"/>
+      </div>
+      <% if (errorMsg !== '') { %>
+        <p class="sign-in-fail-msg"><%= errorMsg %></p>
+      <% } %>
+      <button class="sign-in-button">Sign In</button>
+    </form>
+    <p class="no-account-msg">
+      Don't have an account? <a href="/register">Create an Account</a>
+    </p>
+  </body>
+</html>
