@@ -1,0 +1,25 @@
+form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+.first-last-name {
+  display: flex;
+  gap: 20px;
+}
+
+.sign-up-button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-size: 1rem;
+  background-color: rgb(26, 231, 43);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.have-account-msg {
+  align-self: center;
+  margin-top: 10px;
+}
