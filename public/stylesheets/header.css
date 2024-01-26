@@ -1,0 +1,25 @@
+header {
+  padding: 10px;
+  background-color: rgb(33, 152, 221);
+}
+
+header nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+header nav a {
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+header nav a:link,
+header nav a:visited {
+  color: black;
+}
+
+@media screen and (max-width: 500px) {
+  header nav a {
+    font-size: 1rem;
+  }
+}

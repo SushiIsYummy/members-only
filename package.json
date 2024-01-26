@@ -12,13 +12,16 @@
     "ui": "browser-sync start --proxy localhost:3000 --files=**/*  --ignore=node_modules --no-ui --no-inject-changes"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^16.4.1",
     "ejs": "^3.1.9",
     "express-async-handler": "^1.2.0",
+    "express-session": "^1.17.3",
     "express-validator": "^7.0.1",
     "http-errors": "~1.6.3",
+    "luxon": "^3.4.4",
     "mongoose": "^8.1.0",
     "morgan": "~1.9.1",
     "passport": "^0.7.0",

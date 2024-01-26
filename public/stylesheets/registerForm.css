@@ -1,7 +1,14 @@
+.register-page {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
 form {
   display: flex;
   flex-direction: column;
   width: 400px;
+  max-width: 400px;
 }
 
 form > h1 {
@@ -11,6 +18,11 @@ form > h1 {
 .first-last-name {
   display: flex;
   gap: 20px;
+}
+
+.first-last-name .input-group input {
+  flex: 1;
+  width: 100%;
 }
 
 .register-button {

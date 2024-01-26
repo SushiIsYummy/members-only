@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/newMessageForm.css">
+  <title>New Message</title>
+</head>
+<body>
+  <%- include('header') %>
+  <div class="new-message-page">
+    <form class="new-message-form" action="" method="POST">
+      <h1>New Message</h1>
+      <div class="input-group">
+        <p>Title:</p>
+        <input type="text" name="title" required />
+      </div>
+      <div class="input-group">
+        <p>Message:</p>
+        <textarea class="message" type="text" name="text" required></textarea>
+      </div>
+      <button class="submit-button">Submit</button>
+    </form>
+  </div>
+</body>
+</html>

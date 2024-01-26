@@ -8,42 +8,45 @@
     <title>Register</title>
   </head>
   <body>
-    <form action="" method="POST">
-      <h1>Create an Account</h1>
-      <div class="first-last-name">
-        <div class="input-group">
-          <p>First Name:</p>
-          <input type="text" name="first_name" required />
+    <%- include('header') %>
+    <div class="register-page">
+      <form action="" method="POST">
+        <h1>Create an Account</h1>
+        <div class="first-last-name">
+          <div class="input-group">
+            <p>First Name:</p>
+            <input type="text" name="first_name" required />
+          </div>
+          <div class="input-group">
+            <p>Last Name:</p>
+            <input type="text" name="last_name" minlength="1" />
+          </div>
         </div>
         <div class="input-group">
-          <p>Last Name:</p>
-          <input type="text" name="last_name" minlength="1" />
+          <p>Username:</p>
+          <input type="text" name="username" minlength="1" />
         </div>
-      </div>
-      <div class="input-group">
-        <p>Username:</p>
-        <input type="text" name="username" minlength="1" />
-      </div>
-      <div class="input-group">
-        <p>Password:</p>
-        <input type="password" name="password" />
-      </div>
-      <div class="input-group">
-        <p>Confirm Password:</p>
-        <input type="password" name="confirm_password" />
-      </div>
-      <button class="register-button">Register</button>
-      <p class="have-account-msg">
-        Already have an account? <a href="/sign-in">Sign In</a>
-      </p>
-      <br>
-      <% if (errors && errors.length > 0) { %>
-        <ul class="error-list">
-          <% errors.forEach((error) => { %>
-            <li> <%= error.msg %></li>
-          <% }); %>
-        </ul>
-      <% } %>
-    </form>
+        <div class="input-group">
+          <p>Password:</p>
+          <input type="password" name="password" />
+        </div>
+        <div class="input-group">
+          <p>Confirm Password:</p>
+          <input type="password" name="confirm_password" />
+        </div>
+        <button class="register-button">Register</button>
+        <p class="have-account-msg">
+          Already have an account? <a href="/sign-in">Sign In</a>
+        </p>
+        <br>
+        <% if (errors && errors.length > 0) { %>
+          <ul class="error-list">
+            <% errors.forEach((error) => { %>
+              <li> <%= error.msg %></li>
+            <% }); %>
+          </ul>
+        <% } %>
+      </form>
+    </div>
   </body>
 </html>

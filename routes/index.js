@@ -5,22 +5,30 @@ const passport = require('passport');
 const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 const User = require('../models/user');
+const Message = require('../models/message');
+const { ensureAuthenticated } = require('../middlewares/authMiddleware');
+const { DateTime } = require('luxon');
 
 router.get('/', [
   asyncHandler(async (req, res, next) => {
-    res.send('You have successfully signed in.');
+    res.redirect('/messages');
   }),
 ]);
 
 router.get('/home', [
+  ensureAuthenticated,
   asyncHandler(async (req, res, next) => {
-    res.send('You have successfully signed in.');
+    res.render('home');
   }),
 ]);
 
 router.get('/sign-in', [
   asyncHandler(async (req, res, next) => {
-    res.render('sign-in-form', { username: '', password: '', errorMsg: '' });
+    if (req.isAuthenticated()) {
+      res.redirect('/home');
+    } else {
+      res.render('sign-in-form', { username: '', password: '', errorMsg: '' });
+    }
   }),
 ]);
 
@@ -43,20 +51,10 @@ router.post('/sign-in', [
         if (err) {
           return next(err);
         }
-        return res.send(
-          `You have successfully logged in, ${user.first_name} ${user.last_name}.`
-        );
-        // return res.redirect('/users/' + user.username);
+        return res.redirect('/home');
       });
     })(req, res, next);
   },
-  // asyncHandler(async (req, res, next) => {
-  //   res.render('sign-in-form', {
-  //     username: req.body.username,
-  //     password: req.body.password,
-  //     errorMsg: 'Your account name or password is incorrect.',
-  //   });
-  // }),
 ]);
 
 router.get('/register', [
@@ -117,6 +115,27 @@ router.post('/register', [
     } catch (err) {
       return next(err);
     }
+  }),
+]);
+
+router.get('/messages', [
+  asyncHandler(async (req, res, next) => {
+    const allMessages = await Message.find({})
+      .populate({
+        path: 'user',
+        select: 'first_name last_name',
+      })
+      .exec();
+    console.log(allMessages);
+    allMessages.map((message) => {
+      message.timestamp = DateTime.fromISO(message.timestamp).toLocaleString(
+        DateTime.DATETIME_MED
+      );
+    });
+    res.render('message-board', {
+      messages: allMessages,
+      isMember: req.isAuthenticated(),
+    });
   }),
 ]);
 

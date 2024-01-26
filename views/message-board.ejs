@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/messageBoard.css">
+  <title>Document</title>
+</head>
+<body>
+  <%- include('header') %>
+  <div class="message-board">
+    <h1>Message Board</h1>
+    <div class="messages">
+      <% if (messages && messages.length > 0) { %>
+        <% messages.forEach((message) => { %>
+          <div class="message">
+            <h1 class="title"><%= message.title %></h1>
+            <p class="text"><%= message.text %></p>
+            <p class="timestamp"><%= message.timestamp %></p>
+            <% if (isMember) { %>
+              <p class="full-name">- <%= message.user.full_name %></p>
+            <% } %>
+          </div>
+        <% }) %>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>

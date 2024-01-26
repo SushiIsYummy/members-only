@@ -1,4 +1,4 @@
-.sign-in-page {
+.new-message-page {
   display: flex;
   justify-content: center;
   padding: 20px;
@@ -8,28 +8,28 @@ form {
   display: flex;
   flex-direction: column;
   width: 400px;
-  max-width: 400px;
 }
 
 form > h1 {
   text-align: center;
 }
 
-.sign-in-button {
+.input-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.new-message-form .submit-button {
   margin-top: 10px;
   padding: 5px 10px;
-  font-size: 1rem;
-  background-color: #2196f3;
   border: none;
-  border-radius: 10px;
+  background-color: green;
+  color: white;
+  border-radius: 7px;
   cursor: pointer;
 }
 
-.no-account-msg {
-  align-self: center;
-  margin-top: 10px;
-}
-
-.sign-in-fail-msg {
-  color: red;
+textarea.message {
+  padding: 5px;
 }
