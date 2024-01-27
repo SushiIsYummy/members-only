@@ -122,17 +122,26 @@ router.post('/register', [
     .trim()
     .isLength({ min: 1 })
     .escape()
-    .withMessage('First name must be specified.')
-    .isAlphanumeric()
-    .withMessage('First name has non-alphanumeric characters.'),
+    .withMessage('First name must be specified.'),
   body('last_name')
     .trim()
     .isLength({ min: 1 })
     .escape()
-    .withMessage('Last name must be specified.')
-    .isAlphanumeric()
-    .withMessage('Last name has non-alphanumeric characters.'),
+    .withMessage('Last name must be specified.'),
   body('username')
+    .custom((username) => !/\s/.test(username))
+    .withMessage('No spaces are allowed in the username')
+    .custom(async (username) => {
+      const existingUser = await User.findOne({ username: username });
+      if (existingUser) {
+        errors.errors.push({
+          msg: `The username is already taken.`,
+        });
+        return false;
+      }
+      return true;
+    })
+    .withMessage('The username is already taken.')
     .trim()
     .isLength({ min: 1 })
     .escape()
@@ -149,6 +158,7 @@ router.post('/register', [
     .withMessage('Passwords do not match'),
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
+
     if (!errors.isEmpty()) {
       res.render('register-form', {
         firstNameRegister: req.body.first_name,
@@ -160,6 +170,7 @@ router.post('/register', [
       });
       return;
     }
+
     try {
       bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
         if (err) {
