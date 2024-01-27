@@ -5,11 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
   <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/home.css">
 </head>
 <body>
   <%- include('header') %>
   <div class="home">
-    <p>Welcome to the homepage.</p>
+    <p class="welcome-msg">Welcome to the homepage, <%= firstName %> <%= lastName %>.</p>
+    <p class="membership-status-msg"><%= memberMsg %>.</p>
+    <form action="/home" method="POST">
+      <div>
+        <p>Enter the secret password to become a member:</p>
+        <input type="password" name="member_password" value="<%= memberPassword !== undefined ? memberPassword : '' %>">
+        <input type="submit" name="member_form" value="Submit"/>
+        <input type="hidden" name="admin_password" value="<%= adminPassword !== undefined ? adminPassword : '' %>">
+        <input type="hidden" name="member_wrong_password" value="<%= wrongMemberPasswordMsg %>">
+        <input type="hidden" name="admin_wrong_password" value="<%= wrongAdminPasswordMsg %>">
+        <% if (wrongMemberPasswordMsg) { %>
+          <p class="wrong-password-msg">Incorrect password</p>
+          <% } else { %>
+            <p class="wrong-password-msg"></p>
+            <% }  %>
+          </div>
+        </form>
+        <form action="/home" method="POST">
+          <div>
+            <p>Enter the secret password to become an admin:</p>
+            <input type="password" name="admin_password" value="<%= adminPassword !== undefined ? adminPassword : '' %>">
+            <input type="submit" name="admin_form" value="Submit"/>
+            <input type="hidden" name="member_password" value="<%= memberPassword !== undefined ? memberPassword : '' %>">
+            <input type="hidden" name="member_wrong_password" value="<%= wrongMemberPasswordMsg %>">
+            <input type="hidden" name="admin_wrong_password" value="<%= wrongAdminPasswordMsg %>">
+        <% if (wrongAdminPasswordMsg) { %>
+          <p class="wrong-password-msg">Incorrect password</p>
+        <% } %>
+      </div>
+    </form>
+    <a href="/sign-out">Sign out</a>
   </div>
 </body>
 </html>

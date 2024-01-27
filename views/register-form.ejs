@@ -15,24 +15,24 @@
         <div class="first-last-name">
           <div class="input-group">
             <p>First Name:</p>
-            <input type="text" name="first_name" required />
+            <input type="text" name="first_name" value="<%= firstNameRegister ? firstNameRegister: '' %>" />
           </div>
           <div class="input-group">
             <p>Last Name:</p>
-            <input type="text" name="last_name" minlength="1" />
+            <input type="text" name="last_name" value="<%= lastNameRegister ? lastNameRegister : '' %>" minlength="1" />
           </div>
         </div>
         <div class="input-group">
           <p>Username:</p>
-          <input type="text" name="username" minlength="1" />
+          <input type="text" name="username" value="<%= username ? username : '' %>" minlength="1" />
         </div>
         <div class="input-group">
           <p>Password:</p>
-          <input type="password" name="password" />
+          <input type="password" name="password" value="<%= password ? password : '' %>" />
         </div>
         <div class="input-group">
           <p>Confirm Password:</p>
-          <input type="password" name="confirm_password" />
+          <input type="password" name="confirm_password" value="<%= confirmPassword ? confirmPassword : '' %>" />
         </div>
         <button class="register-button">Register</button>
         <p class="have-account-msg">

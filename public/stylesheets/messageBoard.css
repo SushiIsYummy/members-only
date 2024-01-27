@@ -1,24 +1,80 @@
 .message-board {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   gap: 20px;
   padding: 20px;
 }
 
+.message-board > h1 {
+  text-align: center;
+}
+
 .messages {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  max-height: 400px;
   gap: 20px;
 }
 
 .messages .message {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 10px 17px;
   border: 1px solid black;
   border-radius: 10px;
-  max-width: 500px;
+  /* width: 100%; */
+  /* max-width: 500px; */
+}
+
+.message .top,
+.message .bottom {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .message .title {
+  /* display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; */
+  overflow: hidden;
   font-size: 1.7rem;
+  margin-bottom: 5px;
+}
+
+.message .text {
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  /* overflow: hidden;
+  white-space: nowrap;
+  text-wrap: wrap;
+  text-overflow: ellipsis; */
+  margin-bottom: 5px;
+}
+
+.message .username {
+  align-self: end;
+}
+
+.message .timestamp {
+  align-self: end;
+}
+
+.message form.delete-message-form {
+  display: flex;
+  justify-content: flex-end;
+}
+.message form.delete-message-form .delete-button {
+  background-color: red;
+  color: white;
+  padding: 3px 5px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
 }

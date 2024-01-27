@@ -9,9 +9,7 @@ const passport = require('passport');
 require('dotenv').config();
 const indexRouter = require('./routes/index');
 const passportConfig = require('./config/passport-config');
-// const usersRouter = require('./routes/users');
 const homeRouter = require('./routes/home');
-// const userController = require('./controllers/userController');
 
 // Connect to MongoDB using Mongoose
 mongoose.connect(process.env.MONGODB_URI);
@@ -40,9 +38,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Middleware to set authentication status variable
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated();
+  if (req.isAuthenticated()) {
+    res.locals.firstName = req.user.first_name;
+    res.locals.lastName = req.user.first_name;
+  }
+  next();
+});
+
 app.use('/', indexRouter);
 app.use('/home', homeRouter);
-// app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 // app.use(function (req, res, next) {

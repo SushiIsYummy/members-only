@@ -15,11 +15,22 @@
       <% if (messages && messages.length > 0) { %>
         <% messages.forEach((message) => { %>
           <div class="message">
-            <h1 class="title"><%= message.title %></h1>
-            <p class="text"><%= message.text %></p>
-            <p class="timestamp"><%= message.timestamp %></p>
-            <% if (isMember) { %>
-              <p class="full-name">- <%= message.user.full_name %></p>
+            <div class="top">
+              <h1 class="title"><%= message.title %></h1>
+              <p class="text"><%= message.text %></p>
+            </div>
+            <% if (isMember || isAdmin) { %>
+              <div class="bottom">
+                <% if (isMember || isAdmin || message.isUsers) { %>
+                  <p class="timestamp"><%= message.timestamp %></p>
+                  <p class="username">- <%= message.user.username %></p>
+                <% } %>
+                <% if (isAdmin) { %>
+                  <form action="/delete-message" method="POST" class="delete-message-form">
+                    <button class="delete-button" name="delete_message" value="<%= message._id %>">Delete</button>
+                  </form>
+                <% } %>
+              </div>
             <% } %>
           </div>
         <% }) %>

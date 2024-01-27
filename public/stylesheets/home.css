@@ -1,0 +1,26 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+}
+
+.home .welcome-msg {
+  font-size: 2rem;
+}
+
+.home .membership-status-msg {
+  font-size: 1.5rem;
+}
+
+.home form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wrong-password-msg {
+  color: red;
+  font-size: 0.9rem;
+}

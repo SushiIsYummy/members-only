@@ -33,7 +33,7 @@ router.post('/new-message', [
       user: req.user._id,
     });
     const result = await message.save();
-    res.redirect('/messages');
+    res.redirect('/message-board');
   }),
 ]);
 
